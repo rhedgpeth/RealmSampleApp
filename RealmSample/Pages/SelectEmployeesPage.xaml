@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:BaseContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:local="clr-namespace:RealmSample.Pages;assembly=RealmSample"
+		x:Class="RealmSample.Pages.SelectEmployeesPage"
+		Title="Select Employee">
+	<ContentPage.Content>
+
+		<Grid Padding="0,20,0,0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="50" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			
+			<ListView Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+					x:Name="employeesList" ItemsSource="{Binding .}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<TextCell Text="{Binding Name}" Detail="{Binding Title}" />
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+
+			<Button Grid.Column="0" Grid.Row="1" x:Name="cancelButton" Text="Cancel" />
+			<Button Grid.Column="1" Grid.Row="1" x:Name="okButton" Text="OK" IsEnabled="false" />
+			
+		</Grid>
+			
+	</ContentPage.Content>
+</local:BaseContentPage>

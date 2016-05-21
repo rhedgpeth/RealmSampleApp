@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:BaseContentPage
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:converters="clr-namespace:RealmSample.Converters;assembly=RealmSample"
+		xmlns:local="clr-namespace:RealmSample.Pages;assembly=RealmSample"
+		Title="{Binding Name}"
+		x:Class="RealmSample.Pages.EmployeePage">
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<converters:EmptyStringConverter x:Key="EmptyStringConverter" />
+			<converters:IsListVisibleConverter x:Key="IsListVisibleConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	
+	<ContentPage.Content>
+		<Grid Margin="10, 10, 10, 10">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="35" />
+				<RowDefinition Height="35" />
+				<RowDefinition Height="35" />
+				<RowDefinition Height="35" />
+				<RowDefinition Height="35" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="100" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<Label Grid.Row="0" Grid.Column="0" Text="First Name:" />
+			<Entry Grid.Row="0" Grid.Column="1" Text="{Binding FirstName}" />
+			
+			<Label Grid.Row="1" Grid.Column="0" Text="Last Name:" />
+			<Entry Grid.Row="1" Grid.Column="1" Text="{Binding LastName}" />
+
+			<Label Grid.Row="2" Grid.Column="0" Text="Title:" />
+			<Entry Grid.Row="2" Grid.Column="1" Text="{Binding Title}" />
+			
+			<Label Grid.Row="3" Grid.Column="0" Text="Manager:" />
+			<Button Grid.Row="3" Grid.Column="1" x:Name="managerButton" Text="{ Binding ManagerName,
+														 Converter={StaticResource EmptyStringConverter},
+                                   						 ConverterParameter=Select Manager }" />
+
+			<Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="Minions"
+				IsVisible="{Binding Minions, Converter={StaticResource IsListVisibleConverter}" />
+	        <ListView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+					x:Name="minionsList" ItemsSource="{Binding Minions}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<TextCell Text="{Binding Name}" Detail="{Binding Title}" />
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			
+		</Grid>
+		
+	</ContentPage.Content>
+</local:BaseContentPage>

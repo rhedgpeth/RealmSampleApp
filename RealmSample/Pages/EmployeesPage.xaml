@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:BaseContentPage 
+		xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		xmlns:local="clr-namespace:RealmSample.Pages;assembly=RealmSample"
+		x:Class="RealmSample.Pages.EmployeesPage"
+		Title="Employees">
+	<ContentPage.Content>
+		<ListView x:Name="employeesList" ItemsSource="{Binding .}" Margin="0,20,0,0">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.ContextActions>
+							<MenuItem Clicked="OnDelete" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
+						</ViewCell.ContextActions>
+						<StackLayout Padding="5,0,0,0">
+							<!-- Margin not working for Label -->
+							<Label Text="{Binding Name}" />
+							<Label Text="{Binding Title}" FontSize="10" />
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</ContentPage.Content>
+</local:BaseContentPage>
